@@ -190,6 +190,13 @@ const Assignment = ({ assignment_employee }) => {
         setData(newData);
     };
 
+    const add = (record) => {
+        form.setFieldsValue({
+            ...record,
+        });
+        setEditingKey(record._id);
+    };
+
     const edit = (record) => {
         form.setFieldsValue({
             assignment_date: (dayjs.utc(record.assignment_date, dateFormat)),
@@ -252,7 +259,7 @@ const Assignment = ({ assignment_employee }) => {
             dataIndex: 'assignment_name',
             width: '27%',
             editable: true,
-            ...getColumnSearchProps('')
+            ...getColumnSearchProps('assignment_name')
         },
         {
             title: 'Статус',
@@ -298,7 +305,7 @@ const Assignment = ({ assignment_employee }) => {
             dataIndex: 'assignment_task',
             width: '13%',
             editable: true,
-            ...getColumnSearchProps('')
+            ...getColumnSearchProps('assignment_task')
         },
         {
             title: 'Действия',
@@ -364,7 +371,7 @@ const Assignment = ({ assignment_employee }) => {
             assignment_priority: 'Средний'
         };
         setData([...data, newData])
-        edit(newData)
+        add(newData)
     };
     return (
         <div className="assignment">

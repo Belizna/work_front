@@ -26,11 +26,11 @@ const MenuMain = () => {
     //поручения для меня
     { key: 'assignmentMe', icon: <ProfileOutlined />, label: 'Мои задачи' },
     //повестка для дейли
-    { key: '4', icon: <AudioOutlined />, label: 'Дейли' },
+    { key: '/daily', icon: <AudioOutlined />, label: 'Дейли' },
     //итоги встреч (дейли, кластерная встреча и тд)
-    { key: '5', icon: <EditOutlined />, label: 'Протоколы встреч' },
+    { key: '/meeting', icon: <EditOutlined />, label: 'Протоколы встреч' },
     //календарь с основными встречами, которые нельзя пропускать
-    { key: '6', icon: <ScheduleOutlined />, label: 'Календарь встреч' },
+    { key: '/meetingCalendar', icon: <ScheduleOutlined />, label: 'Календарь встреч' },
     //события например др / смена сертификата и тд
     { key: '7', icon: <FieldTimeOutlined />, label: 'События' },
     //отпуск команды

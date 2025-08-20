@@ -6,6 +6,9 @@ import { Route, Routes, Navigate } from 'react-router-dom';
 import MenuMain from './components/Menu/MenuMain';
 import PageAssignment from './pages/assignment/pageAssignment.js';
 import PageAssignmentMe from './pages/assignmentMe/pageAssignmentMe.js';
+import PageDaily from './pages/daily/pageDaily.js';
+import PageMeeting from './pages/meeting/pageMeeting.js';
+import PageCalendarMeeting from './pages/calendarMeeting/pageCalendarMeeting.js';
 
 import "./App.css"
 
@@ -82,6 +85,9 @@ const App = () => {
                 />
                 <Route path='/assignment' element={<PageAssignment/>} exact />
                 <Route path='/assignmentMe' element={<PageAssignmentMe/>} exact />
+                <Route path='/daily' element={<PageDaily/>} exact />
+                <Route path='/meeting' element={<PageMeeting/>} exact />
+                <Route path='/meetingCalendar' element={<PageCalendarMeeting/>} exact />
               </Routes>
             </Content>
           </Layout>
