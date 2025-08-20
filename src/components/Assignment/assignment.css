@@ -1,0 +1,18 @@
+.assignment {
+    width: 1400px;
+    transform: scale(0.9, 0.9);
+}
+
+.table-row-light {
+    background-color: #306317;
+    text-align: center;
+}
+
+.table-row-light-to {
+    background-color: #aa9514;
+    text-align: center;
+}
+
+.table-row-dark {
+    text-align: center;
+}
