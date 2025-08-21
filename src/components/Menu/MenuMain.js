@@ -46,7 +46,7 @@ const MenuMain = () => {
 
   return (
     <>
-      <div style={{ width: 256 }}>
+      <div style={{ width: 200, background: '#d8ffdeff' }}>
         <Menu className="menu"
           onClick={onClick}
           defaultSelectedKeys={['1']}

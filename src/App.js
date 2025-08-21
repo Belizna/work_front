@@ -56,7 +56,7 @@ const App = () => {
         <Layout hasSider>
           <Sider
             style={{
-              background: '#000000',
+              background: '#ffffffff',
               overflow: 'auto',
               height: '100vh',
               position: 'fixed',

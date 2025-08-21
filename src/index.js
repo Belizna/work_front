@@ -5,7 +5,7 @@ import './index.css';
 import App from './App';
 import dayjs from "dayjs";
 import "dayjs/locale/ru";
-import { ConfigProvider,theme } from 'antd';
+import { ConfigProvider } from 'antd';
 import updateLocale from "dayjs/plugin/updateLocale";
 import locale from "antd/es/locale/ru_RU";
 
@@ -14,13 +14,13 @@ dayjs.updateLocale("zh-cn", {
   weekStart: 1
 });
 
-const { darkAlgorithm } = theme;
+//const { darkAlgorithm } = theme;
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <>
     <BrowserRouter>
-      <ConfigProvider theme={{ algorithm: darkAlgorithm }} locale={locale}>
+      <ConfigProvider locale={locale}>
           <App />
       </ConfigProvider>
     </BrowserRouter>
