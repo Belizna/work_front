@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
-import { Form, Input, Popconfirm, Table, Space, Select, Typography, Button, DatePicker} from 'antd';
+import { Form, Input, Popconfirm, Table, Space, Select, Typography, Button, DatePicker } from 'antd';
 import axios from "axios";
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc'
@@ -24,12 +24,12 @@ const EditableCell = ({
   const inputNode = inputType === 'select' ? <Select
     options={[
       {
-        value: 'Выполнено',
-        label: 'Выполнено',
+        value: 'Подготовлено',
+        label: 'Подготовлено',
       },
       {
-        value: 'Не Выполнено',
-        label: 'Не Выполнено',
+        value: 'Не подготовлено',
+        label: 'Не подготовлено',
       },
     ]} /> :
     inputType === 'priority' ? <Select
@@ -73,12 +73,12 @@ const EditableCell = ({
   );
 };
 
-const PageDaily = () => {
+const PageEvents = () => {
   const [countSave, setCountSave] = useState(0);
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_URL}/daily`)
-      .then((res) => setData(res.data.daily))
+    axios.get(`${process.env.REACT_APP_API_URL}/events`)
+      .then((res) => setData(res.data.events))
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [countSave])
 
@@ -184,14 +184,14 @@ const PageDaily = () => {
 
   const handleDelete = async (record) => {
     const newData = data.filter((item) => item._id !== record._id);
-    await axios.delete(`${process.env.REACT_APP_API_URL}/daily/delete/${record._id}`)
+    await axios.delete(`${process.env.REACT_APP_API_URL}/events/delete/${record._id}`)
     setData(newData);
   };
 
-    const add = (record) => {
+  const add = (record) => {
     form.setFieldsValue({
-      daily_agenda: '',
-      daily_protocol: '',
+      events_agenda: '',
+      events_protocol: '',
       ...record,
     });
     setEditingKey(record._id);
@@ -199,9 +199,10 @@ const PageDaily = () => {
 
   const edit = (record) => {
     form.setFieldsValue({
-      daily_date: (dayjs.utc(record.daily_date, dateFormat)),
-      daily_agenda: record.daily_agenda,
-      daily_protocol: record.daily_protocol,
+      events_date: (dayjs.utc(record.events_date, dateFormat)),
+      events_agenda: record.events_agenda,
+      meetingCalendar_protocol: record.meetingCalendar_protocol,
+      meetingCalendar_status: record.meetingCalendar_status,
     });
     setEditingKey(record._id);
   };
@@ -233,8 +234,8 @@ const PageDaily = () => {
         });
         setData(newData);
         setEditingKey('');
-        typeof _id === 'number' ? await axios.post(`${process.env.REACT_APP_API_URL}/daily/add`, row)
-          : await axios.patch(`${process.env.REACT_APP_API_URL}/daily/edit/${_id}`, row)
+        typeof _id === 'number' ? await axios.post(`${process.env.REACT_APP_API_URL}/meetingCalendar/add`, row)
+          : await axios.patch(`${process.env.REACT_APP_API_URL}/meetingCalendar/edit/${_id}`, row)
         setCountSave(countSave + 1)
       } else {
         newData.push(row);
@@ -247,24 +248,43 @@ const PageDaily = () => {
   };
   const columns = [
     {
-      title: 'Дата проведения',
-      dataIndex: 'daily_date',
+      title: 'Дата встречи',
+      dataIndex: 'meetingCalendar_date',
       width: '9%',
       editable: true,
+      ...getColumnSearchProps('meetingCalendar_date')
     },
     {
-      title: 'Повестка дня',
-      dataIndex: 'daily_agenda',
-      width: '27%',
+      title: 'Повестка встречи',
+      dataIndex: 'meetingCalendar_agenda',
+      width: '15%',
       editable: true,
-      ...getColumnSearchProps(''),
+      ...getColumnSearchProps('meetingCalendar_agenda')
     },
     {
-      title: 'Протокол',
-      dataIndex: 'daily_protocol',
+      title: 'Задача встречи',
+      dataIndex: 'meetingCalendar_protocol',
       width: '27%',
       editable: true,
-      ...getColumnSearchProps(''),
+      ...getColumnSearchProps('meetingCalendar_protocol')
+    },
+    {
+      title: 'Статус',
+      dataIndex: 'meetingCalendar_status',
+      width: '10%',
+      editable: true,
+      defaultFilteredValue: ['Не подготовлено'],
+      filters: [
+        {
+          text: 'Подготовлено',
+          value: 'Подготовлено'
+        },
+        {
+          text: 'Не подготовлено',
+          value: 'Не подготовлено'
+        }
+      ],
+      onFilter: (value, record) => record.meetingCalendar_status.startsWith(value)
     },
     {
       title: 'Действия',
@@ -309,7 +329,11 @@ const PageDaily = () => {
       ...col,
       onCell: (record) => ({
         record,
-        inputType: col.dataIndex === 'daily_date' ? 'date' : 'text',
+        inputType: col.dataIndex === 'meetingCalendar_status' ?
+          'select' : col.dataIndex === 'meetingCalendar_date' ?
+            'date' : col.dataIndex === 'meetingCalendar_agenda' ?
+              'input' :
+              'text',
         dataIndex: col.dataIndex,
         title: col.title,
         editing: isEditing(record),
@@ -321,45 +345,46 @@ const PageDaily = () => {
     setPage(Math.ceil((data.length + 1) / 15))
     const newData = {
       _id: Math.random(),
-      daily_agenda: '',
-      daily_protocol: 'Леша: \nСережа: \nСаша: \nАскар: \nИлья: \nТаня:'
+      meetingCalendar_agenda: '',
+      meetingCalendar_protocol: '',
+      meetingCalendar_status: 'Не подготовлено'
     };
-    setData([newData, ...data])
+    setData([...data, newData])
     add(newData)
   };
   return (
     <div className="assignment">
-        <Form form={form} component={false}>
-          <Table style={{ width: 1200 }}
-            components={{
-              body: {
-                cell: EditableCell,
-              },
-            }}
-            bordered
-            dataSource={data}
-            columns={mergedColumns}
-            pagination={{
-              current: page,
-              pageSize: pageSize,
-              onChange: (page, pageSize) => {
-                setPage(page)
-                setPageSize(pageSize)
-              },
-            }}>
-          </Table>
-        </Form>
-        <Button
-          onClick={handleAdd}
-          type="primary"
-          style={{
-            marginTop: 10,
+      <Form form={form} component={false}>
+        <Table style={{ width: 1200 }}
+          components={{
+            body: {
+              cell: EditableCell,
+            },
+          }}
+          bordered
+          dataSource={data}
+          columns={mergedColumns}
+          pagination={{
+            current: page,
+            pageSize: pageSize,
+            onChange: (page, pageSize) => {
+              setPage(page)
+              setPageSize(pageSize)
+            },
           }}>
-          Добавить повестку
-        </Button>
+        </Table>
+      </Form>
+      <Button
+        onClick={handleAdd}
+        type="primary"
+        style={{
+          marginTop: 10,
+        }}>
+        Добавить событие
+      </Button>
     </div>
 
   );
 }
 
-export default PageDaily;
+export default PageEvents;

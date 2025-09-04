@@ -1,6 +1,7 @@
 import Assignment from "../../components/Assignment/Assignment";
-
-import "./pageAssignment.css"
+import GanttManager from "../../components/Gantt/Gantta";
+import { Tabs } from 'antd';
+import "./pageAssignment.css";
 
 const pageAssignment = () => {
 
@@ -13,16 +14,39 @@ const pageAssignment = () => {
     { assignment_employee: "Салеев Илья Александрович" }
   ]
 
+  const items = [
+    {
+      key: '1',
+      label: 'Задачи',
+      children: <>
+        <div>
+          {
+            employee.map(obj =>
+              <Assignment assignment_employee={obj.assignment_employee} />
+            )
+          }
+        </div>
+      </>,
+    },
+    {
+      key: '2',
+      label: 'Ганта',
+      children: <>
+        <div>
+          {
+            employee.map(obj =>
+              <GanttManager assignment_employee={obj.assignment_employee} />
+            )
+          }
+        </div>
+      </>,
+    },
+  ];
+
   return (
-    <>
-      <div>
-        {
-          employee.map(obj =>
-            <Assignment assignment_employee={obj.assignment_employee} />
-          )
-        }
-      </div>
-    </>
+    <div className="tabs">
+      <Tabs defaultActiveKey="1" items={items}/>
+    </div>
   );
 };
 

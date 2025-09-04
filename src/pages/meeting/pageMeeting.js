@@ -342,7 +342,7 @@ const PageMeeting = () => {
   });
 
   const handleAdd = async () => {
-    setPage(Math.ceil((data.length + 1) / 15))
+    setPage(Math.ceil((data.length + 1) / pageSize))
     const newData = {
       _id: Math.random(),
       meeting_agenda: '',

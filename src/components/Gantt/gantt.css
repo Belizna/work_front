@@ -1,0 +1,86 @@
+.gantt-container {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.gantt-column-name::before {
+  content: "Название";
+}
+
+.gantt-column-from::before {
+  content: "С";
+}
+
+.gantt-column-to::before {
+  content: "По";
+}
+
+.gantt-task-react {
+  background-color: #333; /* Темный фон для диаграммы */
+  color: #e0e0e0; /* Светлый цвет текста */
+}
+
+.gantt-task-name {
+  white-space: normal !important; /* перенос строк */
+  word-break: break-word;         /* перенос слов */
+  line-height: 1.2em;             /* компактный межстрочный */
+  overflow-wrap: anywhere;
+}
+
+/* Стили для всех задач */
+.gantt-task {
+  background-color: #555; /* Темный фон для задач */
+  border-color: #444; /* Темная граница задачи */
+  color: #fff; /* Белый текст для задач */
+}
+
+/* При наведении на задачу */
+.gantt-task:hover {
+  background-color: #666; /* Светлее, когда наведено */
+}
+
+/* Стиль для столбцов (заголовки) */
+.gantt-column-header {
+  background-color: #222; /* Темный фон для заголовков */
+  color: #fff; /* Белый текст */
+  border-color: #444; /* Темная граница */
+}
+
+/* Стили для текущей даты */
+.gantt-day.current-day {
+  background-color: #ffcc00; /* Выделение текущего дня */
+  color: #121212; /* Темный текст на ярком фоне */
+}
+
+/* Стили для линии времени */
+.gantt-date-line {
+  background-color: #ffcc00; /* Яркая линия времени */
+}
+
+/* Стили для событий, таких как выделение и взаимодействие */
+.gantt-event {
+  background-color: #444; /* Темный фон для событий */
+  border-color: #333; /* Темная граница событий */
+  color: #fff; /* Белый текст */
+}
+
+/* Стили для кнопок управления */
+.gantt-header-button,
+.gantt-toggle-button {
+  background-color: #555; /* Темный фон кнопок */
+  color: #fff; /* Белый текст */
+  border: none; /* Без границы */
+  cursor: pointer;
+}
+
+.gantt-header-button:hover,
+.gantt-toggle-button:hover {
+  background-color: #777; /* Светлее при наведении */
+}
+
+/* Стиль для подзадач */
+.gantt-task-children {
+  background-color: #444; /* Темный фон подзадач */
+  border-color: #333; /* Темная граница */
+}

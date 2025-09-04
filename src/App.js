@@ -75,7 +75,7 @@ const App = () => {
             <Content
               style={{
                 margin: '24px 0 0',
-                overflow: 'initial',
+                overflow: 'auto',
               }}
             >
               <Routes>
