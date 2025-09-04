@@ -22,6 +22,7 @@ const ruLocale = {
 export default function GanttManager({ assignment_employee }) {
 
     var task = []
+    const EmptyTooltip = () => <></>;
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [data, setData] = useState([]);
     const [dataSelector, setDataSelector] = useState([]);
@@ -83,6 +84,7 @@ export default function GanttManager({ assignment_employee }) {
                                 tasks={data}
                                 viewMode={ViewMode.Day}
                                 locale={ruLocale}
+                                TooltipContent={EmptyTooltip} 
                                 onDateChange={(task) => {
                                     handleSave(task);
                                     setData((prev) =>

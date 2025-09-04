@@ -59,7 +59,6 @@ const App = () => {
               background: '#000000',
               overflow: 'auto',
               height: '100vh',
-              position: 'fixed',
               left: 0,
               top: 0,
               bottom: 0,
@@ -67,11 +66,7 @@ const App = () => {
           >
             <MenuMain />
           </Sider>
-          <Layout
-            style={{
-              marginLeft: 180,
-            }}
-          >
+          <Layout>
             <Content
               style={{
                 margin: '24px 0 0',
