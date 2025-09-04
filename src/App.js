@@ -66,7 +66,11 @@ const App = () => {
           >
             <MenuMain />
           </Sider>
-          <Layout>
+          <Layout
+            style={{
+              marginLeft: 20,
+            }}
+          >
             <Content
               style={{
                 margin: '24px 0 0',

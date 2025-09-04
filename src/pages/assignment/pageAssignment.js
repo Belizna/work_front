@@ -45,7 +45,7 @@ const pageAssignment = () => {
 
   return (
     <div className="tabs">
-      <Tabs defaultActiveKey="1" items={items}/>
+      <Tabs size="small" defaultActiveKey="1" items={items}/>
     </div>
   );
 };
