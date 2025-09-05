@@ -79,6 +79,7 @@ export default function GanttManager({ assignment_employee }) {
                             overflowX: "auto",
                         }}>
                             <Gantt
+                                todayColor="rgba(0, 255, 38, 0.3)"
                                 tasks={data}
                                 viewMode={ViewMode.Day}
                                 locale={ruLocale}
