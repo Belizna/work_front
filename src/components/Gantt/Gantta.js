@@ -9,8 +9,6 @@ import { Gantt, ViewMode } from "gantt-task-react";
 import "gantt-task-react/dist/index.css";
 import axios from "axios";
 
-import './gantt.css'
-
 const ruLocale = {
     months: [
         "Янв", "Фев", "Мар", "Апр", "Май", "Июн",
@@ -38,7 +36,7 @@ export default function GanttManager({ assignment_employee }) {
 
     const onFinish = async (values) => {
         await axios.post(`${process.env.REACT_APP_API_URL}/gantt/add/${assignment_employee}`, values)
-        setCountSave(countSave+1)
+        setCountSave(countSave + 1)
         setIsModalOpen(false)
     };
 
@@ -84,7 +82,7 @@ export default function GanttManager({ assignment_employee }) {
                                 tasks={data}
                                 viewMode={ViewMode.Day}
                                 locale={ruLocale}
-                                TooltipContent={EmptyTooltip} 
+                                TooltipContent={EmptyTooltip}
                                 onDateChange={(task) => {
                                     handleSave(task);
                                     setData((prev) =>
@@ -127,7 +125,12 @@ export default function GanttManager({ assignment_employee }) {
                                 <Input />
                             </Form.Item>
                             <Form.Item name={['dependencies']} label="Родитель">
-                                <Select options={dataSelector} />
+                                <Select listHeight={384}                 // высота видимой области (px)
+                                    dropdownStyle={{                 // если listHeight не хватает
+                                        maxHeight: 384,
+                                        overflow: 'auto',
+                                        WebkitOverflowScrolling: 'touch' // плавный скролл на iOS/планшетах
+                                    }} showSearch optionFilterProp="label" options={dataSelector} />
                             </Form.Item>
                             <Form.Item name={['end']} label="Конец">
                                 <DatePicker />
