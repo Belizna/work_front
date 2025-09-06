@@ -1,6 +1,7 @@
 import Assignment from "../../components/Assignment/Assignment";
 import GanttManager from "../../components/Gantt/Gantta";
 import { Tabs } from 'antd';
+import Charts from "../../components/Charts/Charts";
 import "./pageAssignment.css";
 
 const pageAssignment = () => {
@@ -36,6 +37,19 @@ const pageAssignment = () => {
           {
             employee.map(obj =>
               <GanttManager assignment_employee={obj.assignment_employee} />
+            )
+          }
+        </div>
+      </>,
+    },
+    {
+      key: '3',
+      label: 'Charts',
+      children: <>
+        <div>
+          {
+            employee.map(obj =>
+              <Charts assignment_employee={obj.assignment_employee} />
             )
           }
         </div>

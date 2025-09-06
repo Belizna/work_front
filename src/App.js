@@ -9,6 +9,7 @@ import PageAssignmentMe from './pages/assignmentMe/pageAssignmentMe.js';
 import PageDaily from './pages/daily/pageDaily.js';
 import PageMeeting from './pages/meeting/pageMeeting.js';
 import PageCalendarMeeting from './pages/calendarMeeting/pageCalendarMeeting.js';
+import PageVocation from './pages/vacation/pageVocation.js';
 
 import "./App.css"
 
@@ -87,6 +88,7 @@ const App = () => {
                 <Route path='/daily' element={<PageDaily/>} exact />
                 <Route path='/meeting' element={<PageMeeting/>} exact />
                 <Route path='/meetingCalendar' element={<PageCalendarMeeting/>} exact />
+                <Route path='/vocation' element={<PageVocation/>} exact />
               </Routes>
             </Content>
           </Layout>

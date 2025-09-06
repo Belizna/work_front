@@ -1,0 +1,96 @@
+/* общий фон страницы */
+.vacation-page {
+    min-height: 100vh;
+    background: linear-gradient(180deg, #f9fafb 0%, #eef2ff 100%);
+    padding: 40px;
+    font-family: "Inter", sans-serif;
+}
+
+/* заголовок страницы */
+.page-title {
+    font-size: 28px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 32px;
+    color: #1e3a8a;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* сетка для месяцев */
+.months-grid {
+    display: flex;
+    flex-direction: column;
+}
+
+/* карточка месяца */
+.month-card {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.month-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+}
+
+/* заголовок месяца */
+.month-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    text-align: center;
+    color: #2563eb;
+}
+
+/* враппер для gantt */
+.gantt-wrapper {
+    overflow-x: auto;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 12px;
+    background: #f9fafb;
+}
+
+/* стиль пустого месяца */
+.empty-month {
+    text-align: center;
+    font-size: 14px;
+    color: #9ca3af;
+    padding: 32px;
+    border: 2px dashed #d1d5db;
+    border-radius: 12px;
+    background: #fafafa;
+}
+
+/* скроллбар */
+.gantt-wrapper::-webkit-scrollbar {
+    height: 8px;
+}
+
+.gantt-wrapper::-webkit-scrollbar-track {
+    background: #f3f4f6;
+    border-radius: 8px;
+}
+
+.gantt-wrapper::-webkit-scrollbar-thumb {
+    background: #9ca3af;
+    border-radius: 8px;
+}
+
+.gantt-wrapper::-webkit-scrollbar-thumb:hover {
+    background: #6b7280;
+}
+
+.gantt-swipe {
+    overflow-x: auto;
+    cursor: grab;
+}
+
+.gantt-swipe:active {
+    cursor: grabbing;
+}

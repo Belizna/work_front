@@ -34,7 +34,7 @@ const MenuMain = () => {
     //события например др / смена сертификата и тд
     { key: '7', icon: <FieldTimeOutlined />, label: 'События' },
     //отпуск команды
-    { key: '8', icon: <SunOutlined />, label: 'Отпуск' },
+    { key: '/vocation', icon: <SunOutlined />, label: 'Отпуск' },
     //встречи один на один - итоги разговора
     { key: '9', icon: <TeamOutlined />, label: 'One to One' },
   ];
