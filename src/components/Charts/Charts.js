@@ -22,12 +22,12 @@ export default function Charts({ assignment_employee }) {
     return (
         <>
             {dataTasks.length === 0 ? <><div className="assignment">
-                <Card title={assignment_employee} style={{ width: 1200 }}>
+                <Card title={assignment_employee} style={{ width: 1180 }}>
                 </Card>
             </div>
             </> :
                 <div className="assignment">
-                    <Card title={assignment_employee} style={{ width: 1200 }}>
+                    <Card title={assignment_employee} style={{ width: 1180 }}>
                         <div className="charts">
                             <div className="pieCharts">
                                 <PieCharts data={dataTasks} />

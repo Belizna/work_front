@@ -64,12 +64,12 @@ export default function GanttManager({ assignment_employee }) {
     return (
         <>
             {data.length === 0 ? <><div className="assignment">
-                <Card title={assignment_employee} style={{ width: 1200 }}>
+                <Card title={assignment_employee} style={{ width: 1180 }}>
                 </Card>
             </div>
             </> :
                 <div className="assignment">
-                    <Card title={assignment_employee} style={{ width: 1200 }}>
+                    <Card title={assignment_employee} style={{ width: 1180 }}>
                         <div style={{
                             backgroundColor: "#141414",
                             color: "#000000",
@@ -126,12 +126,8 @@ export default function GanttManager({ assignment_employee }) {
                                 <Input />
                             </Form.Item>
                             <Form.Item name={['dependencies']} label="Родитель">
-                                <Select listHeight={384}                 // высота видимой области (px)
-                                    dropdownStyle={{                 // если listHeight не хватает
-                                        maxHeight: 384,
-                                        overflow: 'auto',
-                                        WebkitOverflowScrolling: 'touch' // плавный скролл на iOS/планшетах
-                                    }} showSearch optionFilterProp="label" options={dataSelector} />
+                                <Select
+                                    options={dataSelector} />
                             </Form.Item>
                             <Form.Item name={['end']} label="Конец">
                                 <DatePicker />

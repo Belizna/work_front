@@ -375,7 +375,7 @@ const Assignment = ({ assignment_employee }) => {
     };
     return (
         <div className="assignment">
-            <Card title={assignment_employee} style={{ width: 1190 }}>
+            <Card title={assignment_employee} style={{ width: 1180 }}>
                 <Form form={form} component={false}>
                     <Table
                         components={{
