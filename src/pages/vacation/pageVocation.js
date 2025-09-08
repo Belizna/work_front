@@ -1,10 +1,42 @@
 import React from "react";
 import Vocation from "../../components/Vocation/Vocation";
-import { Tabs, Typography, Select} from 'antd';
+import { Tabs, Typography, Select, Card, Table } from 'antd';
 import './vocation.css'
 
 const { Title } = Typography;
 
+const data = [
+    {
+        assignment_employee: 'Тарасенко',
+        days_vocation: 28
+    },
+    {
+        assignment_employee: 'Жданов',
+        days_vocation: 28
+    },
+    {
+        assignment_employee: 'Прохваткин',
+        days_vocation: 56
+    },
+    {
+        assignment_employee: 'Ерофеева',
+        days_vocation: 38
+    }
+]
+const columns = [
+    {
+        title: 'Сотдруник',
+        dataIndex: 'assignment_employee',
+        width: '50%',
+        editable: true,
+    },
+    {
+        title: 'Количество дней отпуска',
+        dataIndex: 'days_vocation',
+        width: '27%',
+        editable: true,
+    },
+];
 
 const items = [
     {
@@ -29,14 +61,16 @@ const items = [
     },
     {
         key: '2',
-        label: 'Ганта',
+        label: 'Статистика',
         children: <>
-
+            <Card >
+                <Table columns={columns} dataSource={data}/>
+            </Card>
         </>,
     },
     {
         key: '3',
-        label: 'Charts',
+        label: 'Админка',
         children: <>
         </>,
     },

@@ -4,6 +4,8 @@ import { Gantt, ViewMode } from "gantt-task-react";
 import "gantt-task-react/dist/index.css";
 import axios from "axios";
 
+import './gantt.css'
+
 const ruLocale = {
     months: [
         "Янв", "Фев", "Мар", "Апр", "Май", "Июн",

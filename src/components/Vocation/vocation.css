@@ -21,6 +21,7 @@
 .months-grid {
     display: flex;
     flex-direction: column;
+    width: 1040px;
 }
 
 /* карточка месяца */
