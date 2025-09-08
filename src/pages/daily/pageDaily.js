@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
-import { Form, Input, Popconfirm, Table, Space, Select, Typography, Button, DatePicker} from 'antd';
+import { Form, Input, Popconfirm, Table, Space, Select, Typography, Button, DatePicker } from 'antd';
 import axios from "axios";
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc'
@@ -188,7 +188,7 @@ const PageDaily = () => {
     setData(newData);
   };
 
-    const add = (record) => {
+  const add = (record) => {
     form.setFieldsValue({
       daily_agenda: '',
       daily_protocol: '',
@@ -258,6 +258,11 @@ const PageDaily = () => {
       width: '27%',
       editable: true,
       ...getColumnSearchProps(''),
+      render: (text) => (
+        <div style={{ whiteSpace: "pre-wrap", wordBreak: "break-word" }}>
+          {text}
+        </div>
+      )
     },
     {
       title: 'Протокол',
@@ -265,6 +270,11 @@ const PageDaily = () => {
       width: '27%',
       editable: true,
       ...getColumnSearchProps(''),
+      render: (text) => (
+        <div style={{ whiteSpace: "pre-wrap", wordBreak: "break-word" }}>
+          {text}
+        </div>
+      )
     },
     {
       title: 'Действия',
@@ -329,34 +339,34 @@ const PageDaily = () => {
   };
   return (
     <div className="assignment">
-        <Form form={form} component={false}>
-          <Table style={{ width: 1200 }}
-            components={{
-              body: {
-                cell: EditableCell,
-              },
-            }}
-            bordered
-            dataSource={data}
-            columns={mergedColumns}
-            pagination={{
-              current: page,
-              pageSize: pageSize,
-              onChange: (page, pageSize) => {
-                setPage(page)
-                setPageSize(pageSize)
-              },
-            }}>
-          </Table>
-        </Form>
-        <Button
-          onClick={handleAdd}
-          type="primary"
-          style={{
-            marginTop: 10,
+      <Form form={form} component={false}>
+        <Table style={{ width: 1200 }}
+          components={{
+            body: {
+              cell: EditableCell,
+            },
+          }}
+          bordered
+          dataSource={data}
+          columns={mergedColumns}
+          pagination={{
+            current: page,
+            pageSize: pageSize,
+            onChange: (page, pageSize) => {
+              setPage(page)
+              setPageSize(pageSize)
+            },
           }}>
-          Добавить повестку
-        </Button>
+        </Table>
+      </Form>
+      <Button
+        onClick={handleAdd}
+        type="primary"
+        style={{
+          marginTop: 10,
+        }}>
+        Добавить повестку
+      </Button>
     </div>
 
   );

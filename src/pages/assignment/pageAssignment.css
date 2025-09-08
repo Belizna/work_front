@@ -1,18 +1,25 @@
 .tabs {
-    margin-left: 15px;
-    width: 1065px;
+  margin-left: 15px;
+  width: 1065px;
 }
 
 .ant-tabs-tab {
-    font-size: 12px;   /* уменьшение текста */
-    padding: 6px 8px;  /* сжимаем отступы */
-  }
+  font-size: 12px;
+  /* уменьшение текста */
+  padding: 6px 8px;
+  /* сжимаем отступы */
+}
 
 .ant-tabs-nav-list {
-    flex-wrap: nowrap;       /* не переносить */
-    overflow-x: auto;        /* горизонтальная прокрутка */
-    scrollbar-width: none;   /* убираем скролл Firefox */
-  }
-  .ant-tabs-nav-list::-webkit-scrollbar {
-    display: none;           /* убираем скролл Chrome/Safari */
-  }
+  flex-wrap: nowrap;
+  /* не переносить */
+  overflow-x: auto;
+  /* горизонтальная прокрутка */
+  scrollbar-width: none;
+  /* убираем скролл Firefox */
+}
+
+.ant-tabs-nav-list::-webkit-scrollbar {
+  display: none;
+  /* убираем скролл Chrome/Safari */
+}

@@ -259,14 +259,24 @@ const PageEvents = () => {
       dataIndex: 'meetingCalendar_agenda',
       width: '15%',
       editable: true,
-      ...getColumnSearchProps('meetingCalendar_agenda')
+      ...getColumnSearchProps('meetingCalendar_agenda'),
+      render: (text) => (
+        <div style={{ whiteSpace: "pre-wrap", wordBreak: "break-word" }}>
+          {text}
+        </div>
+      )
     },
     {
       title: 'Задача встречи',
       dataIndex: 'meetingCalendar_protocol',
       width: '27%',
       editable: true,
-      ...getColumnSearchProps('meetingCalendar_protocol')
+      ...getColumnSearchProps('meetingCalendar_protocol'),
+      render: (text) => (
+        <div style={{ whiteSpace: "pre-wrap", wordBreak: "break-word" }}>
+          {text}
+        </div>
+      )
     },
     {
       title: 'Статус',

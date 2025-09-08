@@ -1,10 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-    Card, Button, Modal, DatePicker,
-    Form,
-    Input,
-    Select,
-} from 'antd'
+import { Card, Button, Modal, DatePicker, Form, Input, Select, } from 'antd'
 import { Gantt, ViewMode } from "gantt-task-react";
 import "gantt-task-react/dist/index.css";
 import axios from "axios";
