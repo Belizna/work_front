@@ -7,7 +7,8 @@ import {
   AudioOutlined,
   EditOutlined,
   ScheduleOutlined,
-  FieldTimeOutlined
+  FieldTimeOutlined,
+  KubernetesOutlined
 } from '@ant-design/icons';
 import { Menu } from 'antd';
 import { useNavigate } from 'react-router-dom'
@@ -36,7 +37,9 @@ const MenuMain = () => {
     //отпуск команды
     { key: '/vocation', icon: <SunOutlined />, label: 'Отпуск' },
     //встречи один на один - итоги разговора
-    { key: '9', icon: <TeamOutlined />, label: 'One to One' },
+    { key: '/onetoone', icon: <TeamOutlined />, label: 'One to One' },
+    //выходы в выходные
+    { key: '/release', icon: <KubernetesOutlined />, label: 'Релизы' },
   ];
 
 
