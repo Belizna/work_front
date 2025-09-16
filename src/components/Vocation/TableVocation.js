@@ -8,22 +8,38 @@ dayjs.extend(utc);
 
 const { TextArea } = Input;
 const dateFormat = 'DD-MM-YYYY'
-
+const currentYear = new Date().getFullYear()
+const { Title } = Typography;
 
 const TableVocation = () => {
+
     const [countSave, setCountSave] = useState(0);
     const [employeeSelector, setEmployeeSelector] = useState([])
     const [employeeFilterSelector, setEmployeeFilterSelector] = useState([])
     const [data, setData] = useState([]);
     const [dataDays, setDataDays] = useState([]);
+    const [isYear, setIsYear] = useState(currentYear);
 
-    useEffect(() => {
-        axios.get(`${process.env.REACT_APP_API_URL}/vocation`)
+    const fetchStatic = async (isYear) => {
+        axios.get(`${process.env.REACT_APP_API_URL}/vocation/${isYear}`)
             .then((res) => [setEmployeeSelector(res.data.employeeSelector),
             setEmployeeFilterSelector(res.data.employeeFilterSelector),
             setData(res.data.vocation),
             setDataDays(res.data.vocationGroupDays)
             ])
+    }
+
+    const handleChange = async (value) => {
+        await axios.get(`${process.env.REACT_APP_API_URL}/vocation/${value}`)
+            .then(res => [setEmployeeSelector(res.data.employeeSelector),
+            setEmployeeFilterSelector(res.data.employeeFilterSelector),
+            setData(res.data.vocation),
+            setDataDays(res.data.vocationGroupDays),
+            setIsYear(value)])
+    }
+
+    useEffect(() => {
+        fetchStatic(isYear)
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [countSave])
 
@@ -231,6 +247,16 @@ const TableVocation = () => {
     };
     return (
         <Card >
+            <Title level={5}>Сводка за <Select
+                defaultValue={isYear}
+                onChange={handleChange}
+                style={{ width: 85 }}
+                options={[
+                    { value: '2025', label: '2025 г.' },
+                    { value: '2026', label: '2026 г.' },
+                    { value: '2027', label: '2027 г.' },
+                ]}
+            /> </Title>
             <div className="cardTable">
                 <div className="tableVotation">
                     <Table columns={columnsTableDays} dataSource={dataDays} />

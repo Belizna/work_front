@@ -1,22 +1,33 @@
 import React, { useRef, useState, useEffect } from "react";
 import { Gantt } from "gantt-task-react";
+import { Select, Typography } from 'antd';
 import "gantt-task-react/dist/index.css";
 import axios from "axios";
 
 import './vocation.css'
 
-const YEAR = 2025;
+const currentYear = new Date().getFullYear()
 
+const { Title } = Typography;
 
 const Vocation = () => {
 
     const [vacationsRaw, setVacationsRaw] = useState([]);
+    const [isYear, setIsYear] = useState(currentYear);
+
+    const fetchStatic = async (isYear) => {
+        axios.get(`${process.env.REACT_APP_API_URL}/vocation/gantt/${isYear}`)
+            .then((res) => [setVacationsRaw(res.data.vocation)])
+    }
+
+    const handleChange = async (value) => {
+        await axios.get(`${process.env.REACT_APP_API_URL}/vocation/gantt/${value}`)
+            .then(res => [setVacationsRaw(res.data.vocation),
+            setIsYear(value)])
+    }
 
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_API_URL}/vocation/gantt`)
-            .then((res) => [
-                setVacationsRaw(res.data.vocation)
-            ])
+        fetchStatic(isYear)
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
@@ -42,13 +53,13 @@ const Vocation = () => {
 
     const monthTasks = months.map((m) =>
         vacations
-            .filter((v) => overlapsMonth(v, YEAR, m))
+            .filter((v) => overlapsMonth(v, isYear, m))
             .map((v, i) => {
                 return {
                     start: v.start,
                     end: v.end,
                     name: v.empId,
-                    id: `${v.empId}-${YEAR}-${m}-${i}`,
+                    id: `${v.empId}-${isYear}-${m}-${i}`,
                     type: "task",
                     progress: 100,
                     isDisabled: true,
@@ -57,37 +68,49 @@ const Vocation = () => {
     );
 
     return (
-        <div className="months-grid">
-            {months.map((m) => (
-                <div key={m} className="month-card">
-                    <h3 className="month-title">
-                        {new Date(YEAR, m, 1).toLocaleString("ru-RU", {
-                            month: "long",
-                            year: "numeric",
-                        })}
-                    </h3>
+        <>
+            <Title level={5}>Сводка за <Select
+                defaultValue={isYear}
+                onChange={handleChange}
+                style={{ width: 85 }}
+                options={[
+                    { value: '2025', label: '2025 г.' },
+                    { value: '2026', label: '2026 г.' },
+                    { value: '2027', label: '2027 г.' },
+                ]}
+            /> </Title>
+            <div className="months-grid">
+                {months.map((m) => (
+                    <div key={m} className="month-card">
+                        <h3 className="month-title">
+                            {new Date(isYear, m, 1).toLocaleString("ru-RU", {
+                                month: "long",
+                                year: "numeric",
+                            })}
+                        </h3>
 
-                    {monthTasks[m].length > 0 ? (
-                        <div className="gantt-wrapper">
-                            <div ref={wrapperRef}
-                                className="gantt-swipe">
-                                <Gantt
-                                    tasks={monthTasks[m]}
-                                    viewMode="Day"
-                                    listCellWidth=""
-                                    columnWidth={45}
-                                    rowHeight={48}
-                                    barHeight={20}
-                                    locale="ru"
-                                />
+                        {monthTasks[m].length > 0 ? (
+                            <div className="gantt-wrapper">
+                                <div ref={wrapperRef}
+                                    className="gantt-swipe">
+                                    <Gantt
+                                        tasks={monthTasks[m]}
+                                        viewMode="Day"
+                                        listCellWidth=""
+                                        columnWidth={45}
+                                        rowHeight={48}
+                                        barHeight={20}
+                                        locale="ru"
+                                    />
+                                </div>
                             </div>
-                        </div>
-                    ) : (
-                        <div className="empty-month">Нет отпусков</div>
-                    )}
-                </div>
-            ))}
-        </div>
+                        ) : (
+                            <div className="empty-month">Нет отпусков</div>
+                        )}
+                    </div>
+                ))}
+            </div>
+        </>
     );
 }
 
