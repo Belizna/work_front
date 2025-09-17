@@ -11,6 +11,7 @@ import PageMeeting from './pages/meeting/pageMeeting.js';
 import PageCalendarMeeting from './pages/calendarMeeting/pageCalendarMeeting.js';
 import PageVocation from './pages/vacation/pageVocation.js';
 import PageOneToOne from './pages/pageOneToOne/pageOneToOne.js';
+import PageRelease from './pages/release/pageRelease.js';
 
 import "./App.css"
 
@@ -91,6 +92,7 @@ const App = () => {
                 <Route path='/meetingCalendar' element={<PageCalendarMeeting/>} exact />
                 <Route path='/vocation' element={<PageVocation/>} exact />
                 <Route path='/onetoone' element={<PageOneToOne/>} exact />
+                <Route path='/release' element={<PageRelease/>} exact />
               </Routes>
             </Content>
           </Layout>

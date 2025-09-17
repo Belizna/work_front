@@ -1,0 +1,8 @@
+.tableRelease {
+    width: 550px;
+}
+
+.release {
+    display: flex;
+    justify-content: space-evenly;
+}
