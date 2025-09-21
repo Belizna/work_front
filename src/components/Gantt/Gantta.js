@@ -74,7 +74,7 @@ export default function GanttManager({ assignment_employee }) {
                                 overflowX: "scroll",           // включаем горизонтальный скролл
                                 overflowY: "hidden",
                                 WebkitOverflowScrolling: "touch", // инерция свайпа на iOS
-                                touchAction: "pan-x",          // говорим браузеру отдавать свайпы
+                                touchAction: "pan-x pan-y",          // говорим браузеру отдавать свайпы
                                 overscrollBehaviorX: "contain" // не скроллим всю страницу
                             }}
                         >

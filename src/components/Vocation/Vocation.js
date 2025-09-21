@@ -93,15 +93,29 @@ const Vocation = () => {
                             <div className="gantt-wrapper">
                                 <div ref={wrapperRef}
                                     className="gantt-swipe">
-                                    <Gantt
-                                        tasks={monthTasks[m]}
-                                        viewMode="Day"
-                                        listCellWidth=""
-                                        columnWidth={45}
-                                        rowHeight={48}
-                                        barHeight={20}
-                                        locale="ru"
-                                    />
+                                    <div
+                                        style={{
+                                            width: "100%",                 // контейнер ровно по экрану
+                                            maxWidth: "100vw",
+                                            overflowX: "scroll",           // включаем горизонтальный скролл
+                                            overflowY: "hidden",
+                                            WebkitOverflowScrolling: "touch", // инерция свайпа на iOS
+                                            touchAction: "pan-x pan-y",          // говорим браузеру отдавать свайпы
+                                            overscrollBehaviorX: "contain" // не скроллим всю страницу
+                                        }}
+                                    >
+                                        <div style={{ minWidth: "1500px" }}>
+                                            <Gantt
+                                                tasks={monthTasks[m]}
+                                                viewMode="Day"
+                                                listCellWidth=""
+                                                columnWidth={45}
+                                                rowHeight={48}
+                                                barHeight={20}
+                                                locale="ru"
+                                            />
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         ) : (
