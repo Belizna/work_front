@@ -25,7 +25,7 @@ export default function PieCharts({ data }) {
     };
 
     return (
-        <div>
+        <div style={{height: 370}}>
             <Pie {...config} />
         </div>
     );

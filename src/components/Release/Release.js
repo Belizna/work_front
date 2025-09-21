@@ -1,4 +1,7 @@
 import { useEffect, useState } from "react";
+import DemoDualAxes from "../Charts/Column";
+import PieCharts from "../Charts/Pie";
+
 import { Form, Input, Popconfirm, Statistic, Tabs, Table, InputNumber, Select, Typography, Button, DatePicker, Card } from 'antd';
 import axios from "axios";
 import dayjs from 'dayjs';
@@ -21,6 +24,7 @@ const Release = ({ assignment_employee }) => {
         { date_release: 0 },
         { time_release: 0 }]);
     const [isYear, setIsYear] = useState(currentYear);
+    const [releaseGroupMonth, setReleaseGroupMonth] = useState([]);
 
     const fetchStatic = async (isYear) => {
         const postFetch = {
@@ -29,7 +33,8 @@ const Release = ({ assignment_employee }) => {
         }
         axios.post(`${process.env.REACT_APP_API_URL}/release/`, postFetch)
             .then((res) => [setData(res.data.releaseEntity),
-            setStatiscticRelease(res.data.statiscticRelease)])
+            setStatiscticRelease(res.data.statiscticRelease),
+            setReleaseGroupMonth(res.data.releaseGroupMonth),])
     }
 
     const handleChange = async (value) => {
@@ -41,6 +46,7 @@ const Release = ({ assignment_employee }) => {
             .then(res => [
                 setData(res.data.releaseEntity),
                 setStatiscticRelease(res.data.statiscticRelease),
+                setReleaseGroupMonth(res.data.releaseGroupMonth),
                 setIsYear(value)])
     }
 
@@ -175,12 +181,29 @@ const Release = ({ assignment_employee }) => {
                 compare: (a, b) => a.release_time - b.release_time,
                 multiple: 1,
             },
+            render: (text) => (
+                <>
+                    {
+                        text > 8 ? <div style={{ whiteSpace: "pre-wrap", wordBreak: "break-word", color: "red" }}>
+                            {text}
+                        </div> : <div style={{ whiteSpace: "pre-wrap", wordBreak: "break-word", color: "green" }}>
+                            {text}
+                        </div>
+                    }
+                </>
+
+            )
         },
         {
             title: 'ЗНИ',
             dataIndex: 'release_zni',
             width: '25%',
             editable: true,
+            render: (text) => (
+                <div style={{ whiteSpace: "pre-wrap", wordBreak: "break-word" }}>
+                    {text}
+                </div>
+            )
         },
         {
             title: 'Действия',
@@ -315,7 +338,15 @@ const Release = ({ assignment_employee }) => {
             key: '2',
             label: 'Charts',
             children: <>
+                <div className="release">
 
+                    <div className="tableRelease">
+                        <DemoDualAxes data={releaseGroupMonth} />
+                    </div>
+                    <div>
+                        <PieCharts data={releaseGroupMonth} />
+                    </div>
+                </div>
             </>,
         },
     ];
