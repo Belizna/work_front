@@ -67,34 +67,41 @@ export default function GanttManager({ assignment_employee }) {
             </> :
                 <div className="assignment">
                     <Card title={assignment_employee} style={{ width: 1180 }}>
-                        <div style={{
-                            backgroundColor: "#141414",
-                            color: "#000000",
-                            padding: "10px",
-                            borderRadius: "6px",
-                            border: "1px solid #ccc",
-                            overflowX: "auto",
-                        }}>
-                            <Gantt
-                                todayColor="rgba(0, 255, 38, 0.3)"
-                                tasks={data}
-                                viewMode={ViewMode.Day}
-                                locale={ruLocale}
-                                TooltipContent={EmptyTooltip}
-                                onDateChange={(task) => {
-                                    handleSave(task);
-                                    setData((prev) =>
-                                        prev.map((t) => (t.id === task.id ? task : t))
-                                    );
-                                }}
-                                onProgressChange={(task) => {
-                                    handleSave(task);
-                                    setData((prev) =>
-                                        prev.map((t) => (t.id === task.id ? task : t))
-                                    );
-                                }}
-                                listCellWidth=""
-                            />
+                        <div
+                            style={{
+                                width: "100%",                 // контейнер ровно по экрану
+                                maxWidth: "100vw",
+                                overflowX: "scroll",           // включаем горизонтальный скролл
+                                overflowY: "hidden",
+                                WebkitOverflowScrolling: "touch", // инерция свайпа на iOS
+                                touchAction: "pan-x",          // говорим браузеру отдавать свайпы
+                                overscrollBehaviorX: "contain" // не скроллим всю страницу
+                            }}
+                        >
+                            <div style={{ minWidth: "1500px" }}>
+                                <div >
+                                    <Gantt
+                                        todayColor="rgba(0, 255, 38, 0.3)"
+                                        tasks={data}
+                                        viewMode={ViewMode.Day}
+                                        locale={ruLocale}
+                                        TooltipContent={EmptyTooltip}
+                                        onDateChange={(task) => {
+                                            handleSave(task);
+                                            setData((prev) =>
+                                                prev.map((t) => (t.id === task.id ? task : t))
+                                            );
+                                        }}
+                                        onProgressChange={(task) => {
+                                            handleSave(task);
+                                            setData((prev) =>
+                                                prev.map((t) => (t.id === task.id ? task : t))
+                                            );
+                                        }}
+                                        listCellWidth=""
+                                    />
+                                </div>
+                            </div>
                         </div>
                         <Button
                             onClick={showModal}
