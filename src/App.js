@@ -12,6 +12,7 @@ import PageCalendarMeeting from './pages/calendarMeeting/pageCalendarMeeting.js'
 import PageVocation from './pages/vacation/pageVocation.js';
 import PageOneToOne from './pages/pageOneToOne/pageOneToOne.js';
 import PageRelease from './pages/release/pageRelease.js';
+import PageUsers from './pages/user/pageUser.js';
 
 import "./App.css"
 
@@ -85,14 +86,15 @@ const App = () => {
                   path="*"
                   element={<Navigate to="/" replace />}
                 />
-                <Route path='/assignment' element={<PageAssignment/>} exact />
-                <Route path='/assignmentMe' element={<PageAssignmentMe/>} exact />
-                <Route path='/daily' element={<PageDaily/>} exact />
-                <Route path='/meeting' element={<PageMeeting/>} exact />
-                <Route path='/meetingCalendar' element={<PageCalendarMeeting/>} exact />
-                <Route path='/vocation' element={<PageVocation/>} exact />
-                <Route path='/onetoone' element={<PageOneToOne/>} exact />
-                <Route path='/release' element={<PageRelease/>} exact />
+                <Route path='/assignment' element={<PageAssignment />} exact />
+                <Route path='/assignmentMe' element={<PageAssignmentMe />} exact />
+                <Route path='/daily' element={<PageDaily />} exact />
+                <Route path='/meeting' element={<PageMeeting />} exact />
+                <Route path='/meetingCalendar' element={<PageCalendarMeeting />} exact />
+                <Route path='/vocation' element={<PageVocation />} exact />
+                <Route path='/onetoone' element={<PageOneToOne />} exact />
+                <Route path='/release' element={<PageRelease />} exact />
+                <Route path='/user' element={<PageUsers />} exact />
               </Routes>
             </Content>
           </Layout>

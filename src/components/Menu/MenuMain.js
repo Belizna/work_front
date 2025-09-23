@@ -8,7 +8,8 @@ import {
   EditOutlined,
   ScheduleOutlined,
   FieldTimeOutlined,
-  KubernetesOutlined
+  KubernetesOutlined,
+  UserOutlined
 } from '@ant-design/icons';
 import { Menu } from 'antd';
 import { useNavigate } from 'react-router-dom'
@@ -40,6 +41,8 @@ const MenuMain = () => {
     { key: '/onetoone', icon: <TeamOutlined />, label: 'One to One' },
     //выходы в выходные
     { key: '/release', icon: <KubernetesOutlined />, label: 'Релизы' },
+    //команда
+    { key: '/user', icon: <UserOutlined />, label: 'Команда' },
   ];
 
 
