@@ -7,7 +7,6 @@ import {
   AudioOutlined,
   EditOutlined,
   ScheduleOutlined,
-  FieldTimeOutlined,
   KubernetesOutlined,
   UserOutlined
 } from '@ant-design/icons';
@@ -22,7 +21,7 @@ const MenuMain = () => {
 
   const items = [
     //главная страница с основной важной информацией
-    { key: '1', icon: <BarChartOutlined />, label: 'Главная страница' },
+    { key: '/main', icon: <BarChartOutlined />, label: 'Главная страница' },
     //задачи сотрудников
     { key: '/assignment', icon: <CarryOutOutlined />, label: 'Поручения' },
     //поручения для меня
@@ -33,8 +32,6 @@ const MenuMain = () => {
     { key: '/meeting', icon: <EditOutlined />, label: 'Протоколы встреч' },
     //календарь с основными встречами, которые нельзя пропускать
     { key: '/meetingCalendar', icon: <ScheduleOutlined />, label: 'Календарь встреч' },
-    //события например др / смена сертификата и тд
-    { key: '7', icon: <FieldTimeOutlined />, label: 'События' },
     //отпуск команды
     { key: '/vocation', icon: <SunOutlined />, label: 'Отпуск' },
     //встречи один на один - итоги разговора

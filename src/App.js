@@ -13,6 +13,7 @@ import PageVocation from './pages/vacation/pageVocation.js';
 import PageOneToOne from './pages/pageOneToOne/pageOneToOne.js';
 import PageRelease from './pages/release/pageRelease.js';
 import PageUsers from './pages/user/pageUser.js';
+import MainPage from './pages/main/Main.js';
 
 import "./App.css"
 
@@ -84,8 +85,9 @@ const App = () => {
               <Routes>
                 <Route
                   path="*"
-                  element={<Navigate to="/" replace />}
+                  element={<Navigate to="/main" replace />}
                 />
+                <Route path='/main' element={<MainPage />} exact />
                 <Route path='/assignment' element={<PageAssignment />} exact />
                 <Route path='/assignmentMe' element={<PageAssignmentMe />} exact />
                 <Route path='/daily' element={<PageDaily />} exact />

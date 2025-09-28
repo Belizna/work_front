@@ -1,0 +1,30 @@
+.eventsTeams {
+    display: flex;
+    flex-direction: column;
+}
+
+.releaseTeams {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.releaseTeamsBlock {
+    width: 150px;
+    margin: 10px 10px 10px 0;
+}
+
+.assignmentTeamsBlock {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px 10px 10px 0;
+}
+
+
+.eventsAndReleaseTeams {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
