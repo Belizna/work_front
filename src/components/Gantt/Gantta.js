@@ -78,7 +78,7 @@ export default function GanttManager({ assignment_employee }) {
                                 overscrollBehaviorX: "contain" // не скроллим всю страницу
                             }}
                         >
-                            <div style={{ minWidth: "1500px" }}>
+                            <div style={{ minWidth: "6000px" }}>
                                 <div >
                                     <Gantt
                                         todayColor="rgba(0, 255, 38, 0.3)"

@@ -80,7 +80,7 @@ const PageUsers = () => {
     const [editingKey, setEditingKey] = useState('');
     const isEditing = (record) => record._id === editingKey;
     const [page, setPage] = useState(1);
-    const [pageSize, setPageSize] = useState(5);
+    const [pageSize, setPageSize] = useState(10);
     const [searchText, setSearchText] = useState('');
     const [searchedColumn, setSearchedColumn] = useState('');
     const searchInput = useRef(null);
